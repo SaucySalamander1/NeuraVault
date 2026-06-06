@@ -8,7 +8,7 @@
 
 *Transforms Documents into Actionable Intelligence*
 
-![NeuraVault Platform](https://github.com/SaucySalamander1/NeuraVault/raw/main/assets/neuravault-platform.png)
+![NeuraVault Platform](https://raw.githubusercontent.com/SaucySalamander1/NeuraVault/main/assets/neuravault-hero.png)
 
 ---
 
