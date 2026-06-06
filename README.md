@@ -1,7 +1,3 @@
----
-
-<div align="center">
-
 # 🔐 NEURAVAULT
 
 **Enterprise Cyber Intelligence Platform**
