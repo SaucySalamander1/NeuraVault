@@ -9,6 +9,7 @@ use App\Http\Controllers\ChatController;
 use App\Http\Controllers\AnalyticsController;
 use App\Http\Controllers\SecurityController;
 use App\Http\Controllers\GraphController;
+use App\Http\Controllers\WeatherController;
 
 Route::get('/', [HomeController::class, 'landing']);
 Route::get('/about', [HomeController::class, 'about']);
@@ -16,6 +17,14 @@ Route::get('/analytics', [AnalyticsController::class, 'index'])->name('analytics
 
 Route::get('/security', [SecurityController::class, 'index'])->name('security.index');
 Route::get('/graph', [GraphController::class, 'index'])->name('graph.index');
+
+// Weather Dashboard Routes (Public)
+Route::prefix('weather')->name('weather.')->group(function () {
+    Route::get('/', [WeatherController::class, 'index'])->name('dashboard');
+    Route::get('/api/current/{location}', [WeatherController::class, 'getCurrentWeather'])->name('current');
+    Route::get('/api/forecast/{location}', [WeatherController::class, 'getForecast'])->name('forecast');
+    Route::get('/api/search', [WeatherController::class, 'searchLocations'])->name('search');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])
