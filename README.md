@@ -10,9 +10,9 @@
 
 ![NeuraVault Platform](https://raw.githubusercontent.com/SaucySalamander1/NeuraVault/main/assets/neuravault-hero.png)
 
----
-
 </div>
+
+---
 
 ## Executive Summary
 
