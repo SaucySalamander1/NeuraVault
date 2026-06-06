@@ -75,6 +75,9 @@ class PdfProcessingService
 
     private function cleanText(string $text): string
     {
+        // Clean invalid UTF-8 sequences
+        $text = mb_convert_encoding($text, 'UTF-8', 'UTF-8');
+        
         // Remove null bytes
         $text = str_replace("\0", '', $text);
 

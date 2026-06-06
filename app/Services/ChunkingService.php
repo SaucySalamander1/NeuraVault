@@ -19,20 +19,26 @@ class ChunkingService
         }
 
         $fullText = $contents->pluck('raw_text')->implode("\n\n");
+        
+        // Clean invalid UTF-8 sequences
+        $fullText = mb_convert_encoding($fullText, 'UTF-8', 'UTF-8');
 
         $document->chunks()->delete();
 
         $chunks = $this->splitIntoChunks($fullText);
 
         foreach ($chunks as $index => $chunkText) {
+            // Clean each chunk
+            $cleanText = mb_convert_encoding($chunkText, 'UTF-8', 'UTF-8');
+            
             DocumentChunk::create([
                 'document_id' => $document->id,
                 'chunk_index' => $index,
-                'content'     => $chunkText,
-                'token_count' => $this->estimateTokens($chunkText),
+                'content'     => $cleanText,
+                'token_count' => $this->estimateTokens($cleanText),
                 'metadata'    => [
-                    'char_count' => strlen($chunkText),
-                    'word_count' => str_word_count($chunkText),
+                    'char_count' => strlen($cleanText),
+                    'word_count' => str_word_count($cleanText),
                 ],
             ]);
         }
